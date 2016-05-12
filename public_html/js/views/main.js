@@ -12,15 +12,18 @@ define([
         initialize: function () {
             // TODO
         },
-        render: function () {
+        render: function() {
             this.$el.html(this.template());
             return this;
         },
+
         show: function () {
-            // TODO
+            this.trigger('show');
+            this.$el.show();
         },
+
         hide: function () {
-            // TODO
+            this.$el.hide();
         }
 
     });

@@ -5,6 +5,7 @@ require.config({
         jquery: "lib/jquery",
         underscore: "lib/underscore",
         backbone: "lib/backbone",
+        three: "lib/three.min.js"
     },
     shim: {
         'backbone': {
@@ -13,7 +14,7 @@ require.config({
         },
         'underscore': {
             exports: '_'
-        },
+        }
     }
 });
 

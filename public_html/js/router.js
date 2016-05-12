@@ -1,41 +1,61 @@
 define(function(require){
 
-    var Backbone = require('backbone');
+    var Backbone = require('backbone'),
         mainView = require('views/main'),
         loginView = require('views/login'),
         gameView = require('views/game'),
-        scoreboardView = require('views/scoreboard');
-        registrationView = require('views/registration');
+        scoreboardView = require('views/scoreboard'),
+        registrationView = require('views/registration'),
+        viewManager = require('views/viewManager');
 
     var Router = Backbone.Router.extend({
         routes: {
             'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
             'login': 'loginAction',
-            'registration': 'registrationAction',
+            'registration': 'regAction',
             '*default': 'defaultActions'
         },
+
+
+        /*
+            var app = require('views/app');
+                viewManager.addView({
+                    'main': mainView,
+                    'login': loginView,
+                    'scoreboard': scoreboardView,
+                    'game': gameView,
+                    'reg': registrationView
+                });
+        */
+
+        manageView: function (view) {
+            viewManager.addView(view);
+            view.show();
+        },
+
         defaultActions: function () {
-            console.log(mainView);
-            $('#page').html(mainView.render().$el);
+            this.manageView(mainView);
         },
         scoreboardAction: function () {
-            console.log('the #scoreboard route');
-            $('#page').html(scoreboardView.render().$el);
+            this.manageView(scoreboardView);
         },
+
         gameAction: function () {
-            console.log('the #game route');
-            $('#page').html(gameView.render().$el);
+            this.manageView(gameView);
         },
+
         loginAction: function () {
-            console.log('the #login route');
-            $('#page').html(loginView.render().$el);
+            this.manageView(loginView);
         },
-        registrationAction: function () {
-            console.log('the #registration route');
-            $('#page').html(registrationView.render().$el);
+
+        regAction: function () {
+            this.manageView(registrationView);
         }
     });
 
     return new Router();
 });
+
+
+
